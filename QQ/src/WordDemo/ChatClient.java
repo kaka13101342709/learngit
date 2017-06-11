@@ -30,7 +30,7 @@ public class ChatClient implements Runnable{
     PrintWriter pw;
     BufferedReader br;
 	
-	public ChatClient(){
+	public ChatClient(int port){
 		//设置界面
 		mainJFrame = new JFrame("客户端聊天程序");
 		container = mainJFrame.getContentPane();//先吧组件添加到容器container，再把容器内容添加到框架Jframe
@@ -61,7 +61,7 @@ public class ChatClient implements Runnable{
 
         try {
             // 创建套接字连接到服务器
-        	socket = new Socket("localhost",6666);
+        	socket = new Socket("localhost",port);
         	os = socket.getOutputStream();
         	pw = new PrintWriter(os);
         	
@@ -125,12 +125,5 @@ public void myEvent(){
 	});
 	
 }
-	
-	
-
-	public static void main(String[] args) {
-		new ChatClient();
-
-	}
 
 }
